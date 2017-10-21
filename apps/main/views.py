@@ -27,27 +27,25 @@ def login(request):
         # messages.success(request, "you have successfully logged in") 
         return redirect('/travels')
     else:
-        messages.error(request, login_return['error'])
+        messages.error(request, login_return['errors'])
         return redirect('/')
 
 def travels(request): #dashboard 
     
-    # a = Trip.objects.get(id=trip_id)
-    # context = {
-    #     "trips":Trip.objects.get(id=trip_id)
-    # }
     context = {
         "trips":Trip.objects.all(),
         "users":User.objects.all()
     }
     # context = {"trips":Trip.objects.get(id=user_id)}
-    return render(request, '/main/travels.html', context)
+    return render(request, 'main/travels.html', context)
 
 def join(request, user_id, trip_id):
     a = Trip.objects.get(id=trip_id)
     b = User.objects.get(id=user_id)
-
+    #user = User.objects.get(id=request.session['id'])
     b.trips.add(a)
+
+
     return redirect('/travels')
 
 def add(request):
@@ -57,9 +55,6 @@ def newtrip(request):
     if request.method == "POST":
         if len(request.method['dest']) == 0 or len(request.method['desc']) == 0 or len(request.method['datefrom']) == 0 or len(request.method['dateto']) == 0:
             messages.error(request, "Cannot submit empty fields")
-            return redirect('/add')
-        if (request.method['dateto']) == request.method['datefrom']):
-            messages.error(request, "Travel Start and End Date cannot be the same")
             return redirect('/add')
         if (request.method['dateto']) > (request.method['datefrom']):
             messages.error(request, "Travel End Date cannot be earlier than Travel To Date")

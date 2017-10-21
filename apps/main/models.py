@@ -26,7 +26,7 @@ class UserManager(models.Manager):
         user_check = User.objects.filter(username=postData['username'])
         if len(user_check) > 0:
             user_check = user_check[0] 
-            if bcrypt.checkpw(postData['password'].encode(), user_to_check.password.encode()):
+            if bcrypt.checkpw(postData['password'].encode(), user_check.password.encode()):
                 user = {'user': user_check} 
                 return user
             else:
@@ -36,6 +36,16 @@ class UserManager(models.Manager):
             errors = {'errors': "Invalid Login. Please try again"}
             return errors
 
+
+
+class Trip(models.Model):
+    dest = models.CharField(max_length = 255)
+    desc = models.TextField()
+    travel_start = models.DateTimeField()
+    travel_end = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add = True)
+    # creator = models.ForeignKey(User,related_name="users")
+
 class User(models.Model):
     name = models.CharField(max_length = 255)
     username = models.CharField(max_length = 255)
@@ -44,16 +54,6 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     trips = models.ManyToManyField(Trip, related_name="users")
     objects=UserManager()
-
-class Trip(models.Model):
-    dest = models.CharField(max_length = 255)
-    desc = models.TextField()
-    travel_start = models.DateTimeField()
-    travel_end = models.DateTiueField()
-    created_at = models.DateTimeField(auto_now_add = True)
-    creator = models.ForeignKey(User,related_name="users")
-
-
 
 
 
