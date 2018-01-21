@@ -52,10 +52,16 @@
                 </tr>
             </thead>
             <tbody>
-                          <!-- Use the not for != instead of that  -->
-        <tr>{% for user in other_users %}
+                          
+        <tr>
             {% for trip in trips %}
+            {% for user in users %}
+            
+            
+            
             <td>{{user.name}}</td>
+            
+
             
             <td><a href="/main/destination/{{trip.id}}">{{trip.dest}}</a></td>
             <td>{{trip.travel_start}}</td>
@@ -69,7 +75,6 @@
 </table>
     
     
-
     <br>
     <a href="/add">Add Travel Plan</a>
 

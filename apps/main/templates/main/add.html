@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add a Trip</title>
+    <style>
+    </style>
 </head>
 <body>
         {% if messages %}
@@ -17,8 +19,8 @@
         {% csrf_token %}
         <p>Destination: <input type="text" name="dest"></p>
         <p>Description: <input type="text" name="desc"></p>
-        <p>Travel Date From: <input type="password" name="datefrom"></p> 
-        <p>Travel Date To: <input type="password" name="dateto"></p>
+        <p>Travel Date From: <input type="date" name="travel_start"></p> 
+        <p>Travel Date To: <input type="date" name="travel_end"></p>
         <input type="submit" value="Add">
         </form>
     <a href='/travels'>Home</a>

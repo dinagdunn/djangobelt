@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Destination</title>
+    <style>
+        
+    </style>
 </head>
 <body>
-    {% for trips in trips %}
-    <h1>{{trips.name}}</h1>
-    <p>Planned by:{{trips.user}}</p>
-    <p>Description:{{trips.desc}}</p>
-    <p>Travel Date From: {{trips.travel_start}}</p>
-    <p>Travel Date To: {{trips.travel_end}}</p>
+    {% for trip in trip %}
+    <h1>{{trip.dest}}</h1>
+    <p>Planned by: {{trip.user}}</p>
+    <p>Description: {{trip.desc}}</p>
+    <p>Travel Date From: {{trip.travel_start}}</p>
+    <p>Travel Date To: {{trip.travel_end}}</p>
     {% endfor %}
 
     <h2>Other users' joining the trip:</h2>
-    {% for trips in trips %}
-    <p>{{user.name }}</p>
+    {% for user in trip %}
+    <p>{{user.name}}</p>
     {% endfor %}
     <br>
     <a href='/travels'>Home</a>
